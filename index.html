@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADHD 一日体验</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">第一人称沉浸体验</p>
+          <h1>ADHD 患者的一天</h1>
+          <p>
+            透过「我」的视角，以超短篇互动方式感受 ADHD 在不同场景下如何打断日常。每个场景只有一次抉择：努力维持专注，或放任分心。
+          </p>
+        </div>
+        <div class="meter" aria-label="专注槽">
+          <div class="meter-header">
+            <span>专注槽</span>
+            <strong id="focusLabel">70 / 100</strong>
+          </div>
+          <div class="meter-bar">
+            <div id="focusFill" class="meter-fill"></div>
+          </div>
+        </div>
+      </header>
+
+      <section id="sceneCard" class="scene-card" aria-live="polite"></section>
+
+      <section class="actions">
+        <button id="focusBtn" class="primary">尝试保持专注</button>
+        <button id="driftBtn" class="secondary">被分心</button>
+        <button id="nextBtn" class="ghost" hidden>进入下个场景</button>
+      </section>
+
+      <section class="journal">
+        <h2>内心独白</h2>
+        <ul id="log"></ul>
+      </section>
+    </main>
+
+    <template id="sceneTemplate">
+      <article>
+        <p class="eyebrow scene-time"></p>
+        <h2 class="scene-title"></h2>
+        <p class="scene-narrative"></p>
+        <div class="scene-task"></div>
+      </article>
+    </template>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
