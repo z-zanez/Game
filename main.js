@@ -1,167 +1,161 @@
 const scenes = [
   {
-    id: "morning",
-    time: "07:20 · 卧室",
-    title: "出门前的 5 分钟",
+    id: "livingRoom",
+    time: "09:05 · 客厅",
+    title: "吸尘器巡航",
     narrative:
-      "闹钟停了三次才真正坐起身。视线扫过桌面：钥匙、耳机、电费账单、散落的便利贴。大脑像浏览器一样开着十几个标签。",
-    task: "把需要带走的物品装进包里，并在手机上勾完出门清单。",
-    focusDelta: +10,
+      "我打算在客厅来一场彻底清洁。吸尘器在地毯上滑行，咖啡桌上还冒着热气的咖啡。走到桌边时，管子擦过木腿，桌面轻轻晃了一下。",
+    task: "沿着地毯慢慢吸，别再撞到咖啡桌。",
+    focusDelta: +8,
     focusResult:
-      "我把注意力锚定在清单上，嘴里轻声重复：钥匙、卡、耳机。声音盖掉了信息提示音，手终于把重要物品收好。",
+      "我刻意放慢速度，用脚背轻顶咖啡桌，提醒自己刚才是我撞到它，而不是桌子坏了。呼吸声压过吸尘器的噪音。",
     distractions: [
       {
-        label: "刷信息",
+        label: "吸尘器撞到桌脚",
         narrative:
-          "对话框接连弹出：新的梗图、朋友的语音、群里的提醒。手指不受控地点开，每条信息都像绕路的岔道。",
-        delta: -15,
+          "手腕一歪，吸尘器整个撞上咖啡桌。桌面晃了一圈，咖啡杯也险些翻倒。",
+        delta: -12,
       },
       {
-        label: "盯住便利贴",
+        label: "盯着阳光里的灰尘",
         narrative:
-          "便利贴上写着昨天没完成的想法，思绪立刻跳到下午才用得上的创意，完全忘了现在急需出门。",
-        delta: -12,
+          "我盯着窗外飘浮的灰尘出神，吸尘器一路拖到桌腿才意识到自己没有控制方向。",
+        delta: -9,
       },
     ],
   },
   {
-    id: "commute",
-    time: "08:35 · 地铁车厢",
-    title: "通勤列车",
+    id: "table",
+    time: "09:07 · 客厅",
+    title: "摇晃的咖啡桌",
     narrative:
-      "站到车门一侧，列车起步的晃动像节拍器。通知声、刹车声、乘客的香水味和对话都在脑中呼啸。",
-    task: "趁 6 站的时间浏览会议资料，标记出待确认的问题。",
-    focusDelta: +7,
+      "桌面还在轻轻摇晃，我已经忘记自己刚才撞过它，只觉得这张桌子突然快散架。螺丝刀就在抽屉里，像在邀请我动手修理。",
+    task: "想起真正的原因，别急着拆桌腿。",
+    focusDelta: +6,
     focusResult:
-      "我靠在车门，用指尖敲击座位把节奏固定，再把资料切成三段，每到一个站就换一个段落，终于抓住了要点。",
+      "我努力回放一分钟前的动作，脑海浮现吸尘器撞上桌脚的画面。原来问题出在我，而不是桌子。",
     distractions: [
       {
-        label: "刷短视频",
+        label: "它肯定坏了",
         narrative:
-          "只是想看一条推荐，结果自动播放不断跳出来，列车报站声变成背景音，手中的会议资料完全没翻动。",
-        delta: -14,
+          "脑中只剩“桌子坏了”。我抓起螺丝刀弯下腰，开始拧松第一根桌腿。",
+        delta: -15,
       },
       {
-        label: "盯着乘客",
+        label: "翻说明书",
         narrative:
-          "对面的人衣服上有个很妙的图案，脑海突然写起了关于它的故事，忘了自己正要准备会议。",
+          "我翻到抽屉底层寻找装配说明，用力过猛连第二根桌腿也松开了。",
+        delta: -11,
+      },
+    ],
+  },
+  {
+    id: "spill",
+    time: "09:15 · 客厅",
+    title: "咖啡洒了一地",
+    narrative:
+      "桌腿被我拧松，咖啡杯顿时倾倒。棕色液体顺着地毯蔓延，黏在脚底。我突然记起应该先去拿纸巾。",
+    task: "把注意力锁定在“去厨房拿纸巾”这件事上。",
+    focusDelta: +7,
+    focusResult:
+      "我不停对自己说“纸巾、纸巾”，把螺丝刀放回桌面，准备直奔厨房。",
+    distractions: [
+      {
+        label: "继续拆到底",
+        narrative:
+          "既然已经拆了，我干脆把四条桌腿全部卸下。咖啡继续沿着地毯扩散。",
+        delta: -13,
+      },
+      {
+        label: "幻想换新桌",
+        narrative:
+          "脑中浮现各种新茶几的样子，我甚至开始量想象中的尺寸，污渍被抛在身后。",
         delta: -10,
       },
     ],
   },
   {
-    id: "noon",
-    time: "12:40 · 办公室",
-    title: "午饭后的状态",
+    id: "kitchen",
+    time: "09:22 · 厨房",
+    title: "到厨房却忘了来干嘛",
     narrative:
-      "午餐后的脑雾正浓。任务板上的需求卡片排成一列，我盯着第一行字，听见空调的嗡鸣、同事的笑声、对面外卖的香味。",
-    task: "在 15 分钟内整理出功能模块的优先级，发给团队。",
-    focusDelta: +8,
+      "我站在厨房中央，原本要拿纸巾，但脑袋一片空白。烤箱静默地等着，我突然想起上周没做完的馅饼。",
+    task: "提醒自己是为了咖啡污渍才来厨房。",
+    focusDelta: +5,
     focusResult:
-      "我戴上耳机播放白噪音，让节奏占据脑内声场，再次念出需求关键词，把要点敲进文档里。邮件发出时肩膀放松了一些。",
+      "我把“纸巾”写在手背上，又贴了一张小纸条在柜门，努力把目标固定。",
     distractions: [
       {
-        label: "临时灵感",
+        label: "突然想做馅饼",
         narrative:
-          "看到新推送的设计案例，脑袋劈里啪啦冒点子：要不要顺便重构 UI？要不要写篇 blog？结果真正的任务还在第一句。",
+          "面粉和黄油已经倒进了碗里，我开始和面，纸巾任务彻底消失。",
         delta: -18,
       },
       {
-        label: "办公室噪音",
+        label: "整理香料罐",
         narrative:
-          "有人在讨论旅行攻略，笑声断断续续。注意力像被磁铁拉走，只听到零碎的笑点，却忘了邮件还空着。",
-        delta: -14,
+          "我顺手把香料罐按颜色排开，越摆越投入，完全忘记咖啡还在客厅地毯上。",
+        delta: -11,
       },
     ],
   },
   {
-    id: "afternoon",
-    time: "16:10 · 会议室",
-    title: "多人会议",
+    id: "pie",
+    time: "10:00 · 厨房",
+    title: "馅饼计划与纸巾危机",
     narrative:
-      "会议同时开着三份文档。有人在白板写关键字，有人不断插话，项目经理在问：‘你刚才听到了吗？’",
-    task: "捕捉到自己负责部分的行动项，并在会议结束前确认时间线。",
-    focusDelta: +9,
+      "面团已经擀好，准备刷蛋液时才发现纸巾盒是空的。脑中闪回客厅的咖啡渍，我决定得去一趟超市。",
+    task: "在动身前记下要买纸巾，并提醒自己回去擦地。",
+    focusDelta: +6,
     focusResult:
-      "我把指尖轻敲桌面让自己保持在声音里，只记录与我相关的 3 条行动项，最后复述一次确认，终于把信息锁定。",
+      "我抓起磁贴记事本写下“纸巾 x2、回客厅擦咖啡”，贴在门口的鞋柜上当作离家提示。",
     distractions: [
       {
-        label: "多线程脑洞",
+        label: "立刻冲去超市",
         narrative:
-          "白板上的词触发新的产品构想，意识飞向未来路线，会议现场的讨论仿佛静音。",
-        delta: -16,
+          "我抓起钥匙准备冲出门，只想着“买纸巾”，却没有写任何提醒，下一步注定要忘。",
+        delta: -9,
       },
       {
-        label: "切屏查看消息",
+        label: "改良馅料",
         narrative:
-          "电脑弹出群聊提醒，手下意识切到聊天窗口，一回神会议已经推进到下一页。",
+          "灵感突然爆发，我开始调整馅饼配方，纸巾危机再度被延后。",
+        delta: -12,
+      },
+    ],
+  },
+  {
+    id: "return",
+    time: "10:15 · 客厅",
+    title: "准备出门却被咖啡渍拦住",
+    narrative:
+      "我提着包走过客厅准备出门，地毯中央那块咖啡渍像新的谜团。脑中一片空白，只剩下惊讶。",
+    task: "把这块污渍当线索，回想刚才的整条链路。",
+    focusDelta: +5,
+    focusResult:
+      "我停下来，按顺序回放：吸尘器→桌腿→咖啡→纸巾→超市。记忆像拉线一样慢慢接回。",
+    distractions: [
+      {
+        label: "惊呼“这里发生了什么啊！”",
+        narrative:
+          "我被吓得大叫，自问“这里发生了什么啊！”，完全忘记是自己弄的。",
         delta: -15,
       },
-    ],
-  },
-  {
-    id: "night",
-    time: "21:15 · 公寓",
-    title: "睡前的瀑布式思绪",
-    narrative:
-      "房间只亮着床头灯。手机屏幕在黑暗里发光，待办清单和社交消息堆满。身体很累，脑子却启动夜间回放模式。",
-    task: "拉伸 10 分钟并写下 3 件今天完成的事，用仪式感结束一天。",
-    focusDelta: +12,
-    focusResult:
-      "我把手机调成飞行模式，放在床外。随着一次次深呼吸，膝盖和肩膀的紧绷慢慢散去，笔记本里写下的三件事像锚，把今日固定下来。",
-    distractions: [
       {
-        label: "信息漩涡",
+        label: "脑补灾难现场",
         narrative:
-          "只是想回一条消息，结果滑到短视频，十分钟后才想起拉伸还没开始。",
-        delta: -20,
-      },
-      {
-        label: "突发家务",
-        narrative:
-          "看到书桌有点乱，开始重排书本、擦拭相框，像突然启动的整理机器人，拖延了真正的休息。",
-        delta: -13,
+          "脑内自动播放猫咪或孩子闯祸的画面，情绪越想越乱，只想逃离。",
+        delta: -11,
       },
     ],
   },
 ];
-
-const toolkitOptions = [
-  {
-    id: "breathing",
-    name: "4-7-8 呼吸",
-    detail: "呼气 4 秒，屏息 7 秒，吸气 8 秒，重启神经系统。",
-    delta: +6,
-    narrative:
-      "我闭上眼按 4-7-8 的节奏呼吸，让声音占据身体，心跳慢下来，脑袋也顺势降噪。",
-  },
-  {
-    id: "body",
-    name: "身体扫描",
-    detail: "从脚趾到肩颈快速扫描紧绷部位。",
-    delta: +5,
-    narrative:
-      "我从脚趾开始默念‘放松’，一路到肩颈，注意力短暂停在身体里，像按下重置键。",
-  },
-  {
-    id: "timer",
-    name: "10 分钟番茄",
-    detail: "只承诺 10 分钟，把任务拆到最小步骤。",
-    delta: +8,
-    narrative:
-      "我设定 10 分钟倒计时，只要求自己完成一句话，计时声像护栏，让专注暂时守住。",
-  },
-];
-
-const TOOL_MAX = 2;
 
 const state = {
   sceneIndex: 0,
-  focus: 70,
+  focus: 65,
   resolved: false,
   completed: false,
-  toolUses: 0,
-  usedTools: new Set(),
 };
 
 const sceneCard = document.getElementById("sceneCard");
@@ -172,12 +166,8 @@ const logList = document.getElementById("log");
 const focusBtn = document.getElementById("focusBtn");
 const driftBtn = document.getElementById("driftBtn");
 const nextBtn = document.getElementById("nextBtn");
-const toolGrid = document.getElementById("toolGrid");
-const toolRemaining = document.getElementById("toolRemaining");
 const timelineFill = document.getElementById("timelineFill");
 const timelineLabel = document.getElementById("timelineLabel");
-
-const toolMap = new Map(toolkitOptions.map((tool) => [tool.id, tool]));
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -271,77 +261,23 @@ function handleDriftChoice() {
   });
 }
 
-function renderToolkit() {
-  toolGrid.innerHTML = "";
-  toolkitOptions.forEach((tool) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "tool-card";
-    btn.dataset.tool = tool.id;
-    btn.innerHTML = `<strong>${tool.name}</strong><span>${tool.detail}</span>`;
-    btn.addEventListener("click", () => handleToolUse(tool.id));
-    toolGrid.appendChild(btn);
-  });
-  updateToolkitButtons();
-}
-
-function updateToolkitButtons() {
-  const buttons = toolGrid.querySelectorAll(".tool-card");
-  buttons.forEach((btn) => {
-    const toolId = btn.dataset.tool;
-    const used = state.usedTools.has(toolId);
-    const disabled = used || state.toolUses >= TOOL_MAX || state.completed;
-    btn.disabled = disabled;
-    btn.classList.toggle("is-used", used);
-  });
-  updateToolRemaining();
-}
-
-function updateToolRemaining() {
-  const remaining = Math.max(TOOL_MAX - state.toolUses, 0);
-  toolRemaining.textContent = remaining;
-}
-
-function handleToolUse(toolId) {
-  if (state.toolUses >= TOOL_MAX || state.usedTools.has(toolId) || state.completed) return;
-  const tool = toolMap.get(toolId);
-  if (!tool) return;
-
-  state.toolUses += 1;
-  state.usedTools.add(toolId);
-  state.focus = clamp(state.focus + tool.delta, 0, 100);
-  addLogEntry(tool.name, tool.narrative, tool.delta);
-  updateMeter();
-  updateToolkitButtons();
-}
-
 function focusVerdict(score) {
   if (score >= 80) {
     return {
-      title: "波动但可控",
-      body: "今天的专注度几次被拉走，却都被你一点点拉回轨道。疲惫感仍在，但你看见自己能掌握方向盘。",
+      title: "混乱里仍能对齐",
+      body: "吸尘器、咖啡桌、馅饼都在争抢注意力，但你靠着自我提示把任务重新排好了。把“为什么站在这里”写下来，会更快回到正题。",
     };
   }
   if (score >= 50) {
     return {
-      title: "随时可能偏航",
-      body: "专注像浮标，在浪里上下起伏。没有谁在偷懒，只是需要别的辅助策略：外部提醒、番茄钟、或更短的工作单元。",
+      title: "家务与支线拉扯",
+      body: "咖啡渍成了提醒，你时而记得、时而忘。试着在客厅和厨房贴上小纸条，让讯息更难丢。",
     };
   }
   return {
-    title: "被一整天拖着走",
-    body: "注意力条一再见底，身体跟着超负荷。请为自己安排缓冲区，找人分担或把任务拆成更小的步骤。",
+    title: "满屋都是悬案",
+    body: "拆桌腿、做馅饼、找纸巾的跳转让情绪耗尽。把大任务拆成一句口号随身携带，下次回到客厅就不会像破案。",
   };
-}
-
-function toolkitReflection(count) {
-  if (count === 0) {
-    return "今天没有使用辅助卡，或许可以预先排练一遍，方便下一次及时调用。";
-  }
-  if (count < TOOL_MAX) {
-    return "你记得主动求助外部辅助，说明已能觉察走神信号；还可以继续尝试不同策略组合。";
-  }
-  return "辅助卡全部出动，外部工具帮你守住了关键任务，也别忘了向身边人寻求更多支持。";
 }
 
 function showSummary() {
@@ -352,26 +288,22 @@ function showSummary() {
   nextBtn.textContent = "重新体验";
 
   const verdict = focusVerdict(state.focus);
-  const reflection = toolkitReflection(state.toolUses);
   sceneCard.innerHTML = `
     <article>
       <p class="eyebrow">一天结束</p>
       <h2>${verdict.title}</h2>
       <p>${verdict.body}</p>
       <div class="scene-task">
-        <strong>辅助卡使用：${state.toolUses} / ${TOOL_MAX}</strong>
-        <p>${reflection}</p>
         <strong>下一步尝试：</strong>
         <ul>
-          <li>保持外部辅助（闹钟、任务卡片、白噪音）帮助切换场景。</li>
-          <li>把任务拆到 10 分钟以内，可先完成感官上最容易启动的一小步。</li>
-          <li>承认大脑会分心，提前预留「走神时间」，再温柔地把自己带回正轨。</li>
+          <li>在客厅、厨房、玄关各自放上一句提醒，写清自己为何站在这里。</li>
+          <li>遇到突发事件时，先停下说出“我是被什么打断的”，再行动。</li>
+          <li>把纸巾、螺丝刀、购物清单放在固定托盘，减少寻找成本。</li>
         </ul>
       </div>
     </article>
   `;
   updateTimeline(true);
-  updateToolkitButtons();
 }
 
 function handleNextScene() {
@@ -390,16 +322,13 @@ function handleNextScene() {
 
 function resetGame() {
   state.sceneIndex = 0;
-  state.focus = 70;
+  state.focus = 65;
   state.completed = false;
-  state.toolUses = 0;
-  state.usedTools.clear();
   focusBtn.hidden = false;
   driftBtn.hidden = false;
   nextBtn.hidden = true;
   logList.innerHTML = "";
   updateMeter();
-  updateToolkitButtons();
   renderScene();
 }
 
@@ -407,6 +336,5 @@ focusBtn.addEventListener("click", handleFocusChoice);
 driftBtn.addEventListener("click", handleDriftChoice);
 nextBtn.addEventListener("click", handleNextScene);
 
-renderToolkit();
 updateMeter();
 renderScene();
