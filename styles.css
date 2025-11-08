@@ -148,6 +148,14 @@ p {
   background: rgba(6, 10, 22, 0.8);
   border: 1px dashed rgba(255, 255, 255, 0.15);
 }
+.scene-task ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+.scene-task li {
+  margin-bottom: 6px;
+}
 
 .actions {
   display: flex;
