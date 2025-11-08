@@ -25,6 +25,31 @@ const scenes = [
     ],
   },
   {
+    id: "commute",
+    time: "08:35 · 地铁车厢",
+    title: "通勤列车",
+    narrative:
+      "站到车门一侧，列车起步的晃动像节拍器。通知声、刹车声、乘客的香水味和对话都在脑中呼啸。",
+    task: "趁 6 站的时间浏览会议资料，标记出待确认的问题。",
+    focusDelta: +7,
+    focusResult:
+      "我靠在车门，用指尖敲击座位把节奏固定，再把资料切成三段，每到一个站就换一个段落，终于抓住了要点。",
+    distractions: [
+      {
+        label: "刷短视频",
+        narrative:
+          "只是想看一条推荐，结果自动播放不断跳出来，列车报站声变成背景音，手中的会议资料完全没翻动。",
+        delta: -14,
+      },
+      {
+        label: "盯着乘客",
+        narrative:
+          "对面的人衣服上有个很妙的图案，脑海突然写起了关于它的故事，忘了自己正要准备会议。",
+        delta: -10,
+      },
+    ],
+  },
+  {
     id: "noon",
     time: "12:40 · 办公室",
     title: "午饭后的状态",
@@ -46,6 +71,31 @@ const scenes = [
         narrative:
           "有人在讨论旅行攻略，笑声断断续续。注意力像被磁铁拉走，只听到零碎的笑点，却忘了邮件还空着。",
         delta: -14,
+      },
+    ],
+  },
+  {
+    id: "afternoon",
+    time: "16:10 · 会议室",
+    title: "多人会议",
+    narrative:
+      "会议同时开着三份文档。有人在白板写关键字，有人不断插话，项目经理在问：‘你刚才听到了吗？’",
+    task: "捕捉到自己负责部分的行动项，并在会议结束前确认时间线。",
+    focusDelta: +9,
+    focusResult:
+      "我把指尖轻敲桌面让自己保持在声音里，只记录与我相关的 3 条行动项，最后复述一次确认，终于把信息锁定。",
+    distractions: [
+      {
+        label: "多线程脑洞",
+        narrative:
+          "白板上的词触发新的产品构想，意识飞向未来路线，会议现场的讨论仿佛静音。",
+        delta: -16,
+      },
+      {
+        label: "切屏查看消息",
+        narrative:
+          "电脑弹出群聊提醒，手下意识切到聊天窗口，一回神会议已经推进到下一页。",
+        delta: -15,
       },
     ],
   },
@@ -76,11 +126,42 @@ const scenes = [
   },
 ];
 
+const toolkitOptions = [
+  {
+    id: "breathing",
+    name: "4-7-8 呼吸",
+    detail: "呼气 4 秒，屏息 7 秒，吸气 8 秒，重启神经系统。",
+    delta: +6,
+    narrative:
+      "我闭上眼按 4-7-8 的节奏呼吸，让声音占据身体，心跳慢下来，脑袋也顺势降噪。",
+  },
+  {
+    id: "body",
+    name: "身体扫描",
+    detail: "从脚趾到肩颈快速扫描紧绷部位。",
+    delta: +5,
+    narrative:
+      "我从脚趾开始默念‘放松’，一路到肩颈，注意力短暂停在身体里，像按下重置键。",
+  },
+  {
+    id: "timer",
+    name: "10 分钟番茄",
+    detail: "只承诺 10 分钟，把任务拆到最小步骤。",
+    delta: +8,
+    narrative:
+      "我设定 10 分钟倒计时，只要求自己完成一句话，计时声像护栏，让专注暂时守住。",
+  },
+];
+
+const TOOL_MAX = 2;
+
 const state = {
   sceneIndex: 0,
   focus: 70,
   resolved: false,
   completed: false,
+  toolUses: 0,
+  usedTools: new Set(),
 };
 
 const sceneCard = document.getElementById("sceneCard");
@@ -91,6 +172,12 @@ const logList = document.getElementById("log");
 const focusBtn = document.getElementById("focusBtn");
 const driftBtn = document.getElementById("driftBtn");
 const nextBtn = document.getElementById("nextBtn");
+const toolGrid = document.getElementById("toolGrid");
+const toolRemaining = document.getElementById("toolRemaining");
+const timelineFill = document.getElementById("timelineFill");
+const timelineLabel = document.getElementById("timelineLabel");
+
+const toolMap = new Map(toolkitOptions.map((tool) => [tool.id, tool]));
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -111,6 +198,19 @@ function renderScene() {
   driftBtn.disabled = false;
   nextBtn.hidden = true;
   state.resolved = false;
+  updateTimeline();
+}
+
+function updateTimeline(isSummary = false) {
+  const denominator = Math.max(scenes.length - 1, 1);
+  if (isSummary) {
+    timelineFill.style.width = "100%";
+    timelineLabel.textContent = "一天总结";
+    return;
+  }
+  const ratio = state.sceneIndex / denominator;
+  timelineFill.style.width = `${ratio * 100}%`;
+  timelineLabel.textContent = `场景 ${state.sceneIndex + 1} / ${scenes.length}`;
 }
 
 function updateMeter() {
@@ -171,6 +271,50 @@ function handleDriftChoice() {
   });
 }
 
+function renderToolkit() {
+  toolGrid.innerHTML = "";
+  toolkitOptions.forEach((tool) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tool-card";
+    btn.dataset.tool = tool.id;
+    btn.innerHTML = `<strong>${tool.name}</strong><span>${tool.detail}</span>`;
+    btn.addEventListener("click", () => handleToolUse(tool.id));
+    toolGrid.appendChild(btn);
+  });
+  updateToolkitButtons();
+}
+
+function updateToolkitButtons() {
+  const buttons = toolGrid.querySelectorAll(".tool-card");
+  buttons.forEach((btn) => {
+    const toolId = btn.dataset.tool;
+    const used = state.usedTools.has(toolId);
+    const disabled = used || state.toolUses >= TOOL_MAX || state.completed;
+    btn.disabled = disabled;
+    btn.classList.toggle("is-used", used);
+  });
+  updateToolRemaining();
+}
+
+function updateToolRemaining() {
+  const remaining = Math.max(TOOL_MAX - state.toolUses, 0);
+  toolRemaining.textContent = remaining;
+}
+
+function handleToolUse(toolId) {
+  if (state.toolUses >= TOOL_MAX || state.usedTools.has(toolId) || state.completed) return;
+  const tool = toolMap.get(toolId);
+  if (!tool) return;
+
+  state.toolUses += 1;
+  state.usedTools.add(toolId);
+  state.focus = clamp(state.focus + tool.delta, 0, 100);
+  addLogEntry(tool.name, tool.narrative, tool.delta);
+  updateMeter();
+  updateToolkitButtons();
+}
+
 function focusVerdict(score) {
   if (score >= 80) {
     return {
@@ -190,6 +334,16 @@ function focusVerdict(score) {
   };
 }
 
+function toolkitReflection(count) {
+  if (count === 0) {
+    return "今天没有使用辅助卡，或许可以预先排练一遍，方便下一次及时调用。";
+  }
+  if (count < TOOL_MAX) {
+    return "你记得主动求助外部辅助，说明已能觉察走神信号；还可以继续尝试不同策略组合。";
+  }
+  return "辅助卡全部出动，外部工具帮你守住了关键任务，也别忘了向身边人寻求更多支持。";
+}
+
 function showSummary() {
   state.completed = true;
   focusBtn.hidden = true;
@@ -198,12 +352,15 @@ function showSummary() {
   nextBtn.textContent = "重新体验";
 
   const verdict = focusVerdict(state.focus);
+  const reflection = toolkitReflection(state.toolUses);
   sceneCard.innerHTML = `
     <article>
       <p class="eyebrow">一天结束</p>
       <h2>${verdict.title}</h2>
       <p>${verdict.body}</p>
       <div class="scene-task">
+        <strong>辅助卡使用：${state.toolUses} / ${TOOL_MAX}</strong>
+        <p>${reflection}</p>
         <strong>下一步尝试：</strong>
         <ul>
           <li>保持外部辅助（闹钟、任务卡片、白噪音）帮助切换场景。</li>
@@ -213,6 +370,8 @@ function showSummary() {
       </div>
     </article>
   `;
+  updateTimeline(true);
+  updateToolkitButtons();
 }
 
 function handleNextScene() {
@@ -233,17 +392,21 @@ function resetGame() {
   state.sceneIndex = 0;
   state.focus = 70;
   state.completed = false;
+  state.toolUses = 0;
+  state.usedTools.clear();
   focusBtn.hidden = false;
   driftBtn.hidden = false;
   nextBtn.hidden = true;
   logList.innerHTML = "";
   updateMeter();
+  updateToolkitButtons();
   renderScene();
 }
 
 focusBtn.addEventListener("click", handleFocusChoice);
- driftBtn.addEventListener("click", handleDriftChoice);
+driftBtn.addEventListener("click", handleDriftChoice);
 nextBtn.addEventListener("click", handleNextScene);
 
+renderToolkit();
 updateMeter();
 renderScene();
