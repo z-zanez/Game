@@ -162,7 +162,7 @@ function handleAdvance() {
 function focusVerdict() {
   return {
     title: "Review of the Day",
-    body: "Today's story was constantly interrupted—from the vacuum to the pie to buying paper towels—and focus kept dropping. Here are some tips to help stay focused.",
+    body: "Today's story was constantly interrupted — from the vacuum to the pie to buying paper towels. Focus just kept dropping. Here are some tips to help stay focused.",
   };
 }
 
