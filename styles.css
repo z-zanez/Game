@@ -77,7 +77,7 @@ p {
   justify-content: space-between;
   font-size: 0.9rem;
   color: var(--muted);
-  margin-bottom: 0;
+  margin-bottom: 6px;
 }
 
 .focus-label {
@@ -267,3 +267,4 @@ button:not(:disabled):hover {
     flex: 1 1 100%;
   }
 }
+
