@@ -1,68 +1,68 @@
 const scenes = [
   {
     id: "vacuum",
-    time: "09:00 · 客厅",
-    title: "吸尘器上线",
+    time: "09:00 · Living Room",
+    title: "Vacuum Cleaner",
     narrative:
-      "我在客厅铺开电线，打开吸尘器沿着地毯缓慢前进。靠近咖啡桌时，吸尘器扫过桌脚，发出一声闷响，桌面跟着摇了两下。",
-    logTitle: "吸尘器撞上咖啡桌",
+      "I turned on the vacuum cleaner in the living room and slowly moved it along the carpet. As I approached the coffee table, the vacuum bumped into the corner, causing the table to shake twice.",
+    logTitle: "Vacuum Hits Coffee Table",
     logText:
-      "吸尘器擦过桌脚，把咖啡桌撞得晃了起来，我心里一紧，忘了自己刚刚掌控着噪声机器。",
+      " The vacuum grazed the table leg and shook the coffee table. My heart skipped a beat — I forgot I was controlling the noisy machine.",
     focusDelta: -6,
   },
   {
     id: "table",
-    time: "09:02 · 客厅",
-    title: "咖啡桌怎么摇晃了",
+    time: "09:02 · Living Room",
+    title: "Why Is the Coffee Table Shaking?",
     narrative:
-      "桌面还在轻轻晃动。我已经忘记那声闷响来自吸尘器，脑子里只剩“桌子坏了”。螺丝刀就在抽屉里，我跪下开始拆第一根桌腿。",
-    logTitle: "一定是桌子坏了",
+      "The tabletop was still gently shaking. I had already forgotten it was due to the vacuum bumping into it; all I could think was, 'The table is broken.' I knelt down and started removing the first leg to try to fix it.",
+    logTitle: "The Table Must Be Broken",
     logText:
-      "我认定桌子出问题，抓起螺丝刀卸下桌腿，试图“修理”一个其实被我撞到的家具。",
+      " I assumed something was wrong with the table, removed a leg, and tried to 'fix' a piece of furniture that I had actually knocked into.",
     focusDelta: -12,
   },
   {
     id: "spill",
-    time: "09:07 · 客厅",
-    title: "咖啡倾倒",
+    time: "09:07 · Living Room",
+    title: "Coffee Spill",
     narrative:
-      "桌腿松动，咖啡杯顺势倒下，咖啡在地毯上留下污渍，我想到：需要纸巾。",
-    logTitle: "拆桌腿引发咖啡倾倒",
+      "With the leg loose, the coffee cup tipped over, leaving a stain on the carpet. I thought: I need paper towels.",
+    logTitle: "Removing Table Leg Causes Coffee Spill",
     logText:
-      "桌腿被我卸下，咖啡全洒在地上，我慌忙决定去厨房拿纸巾补救。",
+      " I removed the table leg, and the coffee spilled all over the floor. I panicked and decided to go to the kitchen to get paper towels.",
     focusDelta: -10,
   },
   {
     id: "kitchen",
-    time: "09:12 · 厨房",
-    title: "来到厨房却忘了来的目的",
+    time: "09:12 · Kitchen",
+    title: "Came to the Kitchen but Forgot Why",
     narrative:
-      "我冲进厨房，停在台面前，突然不知道自己来这干什么。视线落在面粉和黄油上，决定开始做馅饼。",
-    logTitle: "决定做馅饼",
+      "I rushed into the kitchen and stopped at the counter, suddenly forgetting why I was there. My eyes landed on the flour and butter, and I decided to start making a pie.",
+    logTitle: "Decided to Make a Pie",
     logText:
-      "纸巾这件事在脑海里消失，我开始和面、调馅，把注意力全给了馅饼。",
+      " The paper towel mission vanished from my mind. I started kneading dough and preparing filling, giving all my attention to the pie.",
     focusDelta: -15,
   },
   {
     id: "pie",
-    time: "09:45 · 厨房",
-    title: "馅饼计划遇到纸巾危机",
+    time: "09:45 · Kitchen",
+    title: "Pie Plan Meets Paper Towel Crisis",
     narrative:
-      "面团擀好准备刷蛋液，伸手去拿纸巾才发现盒子是空的：我得去超市买纸巾！",
-    logTitle: "决定去超市",
+      "The dough was rolled out and ready for egg wash. I reached for paper towels only to find the box empty: I need to go to the supermarket to buy some!",
+    logTitle: "Decided to Go to the Supermarket",
     logText:
-      "做馅饼做到一半发现没纸巾要去超市买。",
+      " Halfway through making the pie, I realized there were no paper towels and decided to go buy some.",
     focusDelta: -4,
   },
   {
     id: "stain",
-    time: "09:55 · 客厅",
-    title: "准备出门却被咖啡渍吓到",
+    time: "09:55 · Living Room",
+    title: "About to Leave but Shocked by Coffee Stain",
     narrative:
-      "我提着包从厨房走向玄关，看到了客厅的一地咖啡，非常惊讶：这里发生了什么啊！",
-    logTitle: "这里发生了什么啊！",
+      "I carried my bag from the kitchen toward the living room and saw the coffee stain on the floor. I was stunned: 'What happened here?!'",
+    logTitle: "What Happened Here?!",
     logText:
-      "面对自己制造的咖啡渍，我惊讶得喊出声，完全忘记这里是怎么变成这样的。",
+      " Facing the coffee stain I created, I exclaimed in shock, completely forgetting how it got this way.",
     focusDelta: -8,
   },
 ];
@@ -94,13 +94,13 @@ function renderScene() {
   clone.querySelector(".scene-narrative").textContent = scene.narrative;
   clone.querySelector(
     ".scene-task"
-  ).innerHTML = `<strong>此刻的念头：</strong>${scene.logText}`;
+  ).innerHTML = `<strong>Current Thought:</strong>${scene.logText}`;
 
   sceneCard.innerHTML = "";
   sceneCard.appendChild(clone);
 
   nextBtn.textContent =
-    state.sceneIndex === scenes.length - 1 ? "结束这一天" : "继续故事";
+    state.sceneIndex === scenes.length - 1 ? "End the Day" : "Continue Story";
   updateTimeline();
 }
 
@@ -108,12 +108,12 @@ function updateTimeline(isSummary = false) {
   const denominator = Math.max(scenes.length - 1, 1);
   if (isSummary) {
     timelineFill.style.width = "100%";
-    timelineLabel.textContent = "一天总结";
+    timelineLabel.textContent = "Day Summary";
     return;
   }
   const ratio = state.sceneIndex / denominator;
   timelineFill.style.width = `${ratio * 100}%`;
-  timelineLabel.textContent = `场景 ${state.sceneIndex + 1} / ${scenes.length}`;
+  timelineLabel.textContent = `Scene ${state.sceneIndex + 1} / ${scenes.length}`;
 }
 
 function updateMeter() {
@@ -161,8 +161,8 @@ function handleAdvance() {
 
 function focusVerdict() {
   return {
-    title: "回顾这一天",
-    body: "今天的情节从吸尘器到馅饼到买纸巾一路被打断，专注度不断下降。下面是一些帮自己保持专注的小技巧。",
+    title: "Review of the Day",
+    body: "Today's story was constantly interrupted—from the vacuum to the pie to buying paper towels—and focus kept dropping. Here are some tips to help stay focused.",
   };
 }
 
@@ -171,20 +171,20 @@ function showSummary() {
   const verdict = focusVerdict();
   sceneCard.innerHTML = `
     <article>
-      <p class="eyebrow">一天结束</p>
+      <p class="eyebrow">Day Ended</p>
       <h2>${verdict.title}</h2>
       <p>${verdict.body}</p>
       <div class="scene-task">
-        <strong>专注小技巧：</strong>
+        <strong>Focus Tips:</strong>
         <ul>
-          <li>多在嘴上默念自己正在做的事情。</li>
-          <li>在客厅和厨房贴上写着「我刚刚在做什么？」的提示卡。</li>
-          <li>启动任务前拍照存证，遇到突发事件时能快速倒带记忆。</li>
+          <li>Keep quietly repeating what you're doing out loud.</li>
+          <li>Put reminder cards in the living room and kitchen asking, "What was I just doing?"</li>
+          <li>Take a photo before starting a task to help recall if interrupted.</li>
         </ul>
       </div>
     </article>
   `;
-  nextBtn.textContent = "重新体验";
+  nextBtn.textContent = "Experience Again";
   updateTimeline(true);
 }
 
@@ -193,7 +193,7 @@ function resetGame() {
   state.focus = 65;
   state.completed = false;
   logList.innerHTML = "";
-  nextBtn.textContent = "继续故事";
+  nextBtn.textContent = "Continue Story";
   updateMeter();
   renderScene();
 }
