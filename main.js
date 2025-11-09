@@ -73,10 +73,19 @@ const state = {
   completed: false,
 };
 
+const focusMoods = [
+  { min: 80, emoji: "😄", label: "专注状态满格" },
+  { min: 60, emoji: "🙂", label: "专注状态平稳" },
+  { min: 40, emoji: "😕", label: "注意力开始分散" },
+  { min: 20, emoji: "😟", label: "注意力迅速下滑" },
+  { min: 0, emoji: "😢", label: "几乎失去专注" },
+];
+
 const sceneCard = document.getElementById("sceneCard");
 const sceneTemplate = document.getElementById("sceneTemplate");
 const focusFill = document.getElementById("focusFill");
 const focusLabel = document.getElementById("focusLabel");
+const focusEmoji = document.getElementById("focusEmoji");
 const logList = document.getElementById("log");
 const nextBtn = document.getElementById("nextBtn");
 const timelineFill = document.getElementById("timelineFill");
@@ -84,6 +93,11 @@ const timelineLabel = document.getElementById("timelineLabel");
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+function getFocusMood(value) {
+  const mood = focusMoods.find((entry) => value >= entry.min);
+  return mood || focusMoods[focusMoods.length - 1];
 }
 
 function renderScene() {
@@ -125,6 +139,14 @@ function updateMeter() {
     focusFill.style.background = "linear-gradient(90deg, #f87171, var(--accent-strong))";
   } else {
     focusFill.style.background = "linear-gradient(90deg, var(--accent), var(--accent-strong))";
+  }
+
+  if (focusEmoji) {
+    const mood = getFocusMood(state.focus);
+    focusEmoji.textContent = mood.emoji;
+    focusEmoji.setAttribute("aria-label", mood.label);
+    focusEmoji.setAttribute("title", mood.label);
+    focusEmoji.classList.toggle("is-dropping", state.focus <= 40);
   }
 }
 
