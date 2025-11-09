@@ -75,15 +75,31 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.focus-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.focus-emoji {
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.focus-emoji.is-dropping {
+  transform: translateY(2px);
 }
 
 .meter-bar {
   width: 100%;
   background: rgba(255, 255, 255, 0.15);
-  height: 12px;
+  height: 10px;
   border-radius: 999px;
   overflow: hidden;
 }
